@@ -1,4 +1,4 @@
-const { Client } = require('../dist')
+const { Client } = require('../index')
 const { appKey, appSecret } = require('./config')
 const client = new Client(appKey, appSecret)
 
