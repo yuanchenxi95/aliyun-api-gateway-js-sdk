@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "9"
+  - "8"
+  - "7"
+  - "6"
+dist: trusty
+env:
+  - NODE_ENV=ci
+cache:
+  directories:
+    - node_modules
+install:
+  - npm install
+script:
+  - npm run build

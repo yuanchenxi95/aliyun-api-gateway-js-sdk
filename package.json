@@ -1,0 +1,46 @@
+{
+  "name": "aliyun-api-gateway-js-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": ">=6"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "npm run prebuild && mkdir dist && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/tslint --project tsconfig.json lib/**.ts",
+    "fix": "./node_modules/.bin/tslint --project tsconfig.json --fix lib/**.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuanchenxi95/aliyun-api-gateway-js-sdk.git"
+  },
+  "author": "Chenxi Yuan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuanchenxi95/aliyun-api-gateway-js-sdk/issues"
+  },
+  "homepage": "https://github.com/yuanchenxi95/aliyun-api-gateway-js-sdk#readme",
+  "devDependencies": {
+    "tslint": "^5.10.0",
+    "tslint-config-standard": "^7.1.0",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/crypto-js": "^3.1.41",
+    "@types/lodash": "^4.14.110",
+    "@types/query-string": "^6.1.0",
+    "@types/url-parse": "^1.1.0",
+    "@types/uuid": "^3.4.3",
+    "axios": "^0.18.0",
+    "crypto-js": "^3.1.9-1",
+    "lodash": "^4.17.10",
+    "query-string": "^6.1.0",
+    "url-parse": "^1.4.1",
+    "uuid": "^3.2.1"
+  }
+}
