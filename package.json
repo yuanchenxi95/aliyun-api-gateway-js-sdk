@@ -30,7 +30,6 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0",
     "@types/crypto-js": "^3.1.41",
     "@types/lodash": "^4.14.110",
     "@types/query-string": "^6.1.0",

@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 import Base from './base'
-import StringMap from './types/StringMap'
 import Options from './types/Options'
 import { buildHeaders, getSignedHeadersString, getSignHeaderKeys } from './util/headers'
 import { CONTENT_TYPE_FORM } from './constants/contentTypes'
