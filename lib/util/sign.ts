@@ -4,6 +4,7 @@ import parse from 'url-parse'
 
 import StringMap from '../types/StringMap'
 import { CONTENT_TYPE_FORM } from '../constants/contentTypes'
+import { sortKey } from './sort'
 
 function buildUrl (url: string, data?: any): string {
   const parsedUrl = parse(url, true)
@@ -16,7 +17,8 @@ function buildUrl (url: string, data?: any): string {
     }
   }
   console.log(parsedUrl)
-  let dataString = JSON.stringify(data)
+  let ordered = sortKey(data)
+  let dataString = JSON.stringify(ordered)
   if (params === '') {
     return parsedUrl.pathname + '?' + dataString
   } else {

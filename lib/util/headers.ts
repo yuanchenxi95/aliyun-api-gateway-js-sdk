@@ -21,7 +21,7 @@ export function getSignHeaderKeys (headers: StringMap = {}, signHeaders: StringM
   return signKeys.sort()
 }
 
-export function buildHeaders (
+export function noddbuildHeaders (
   headers: StringMap = {},
   signHeaders: StringMap = {},
   appKey: string,

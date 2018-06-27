@@ -11,8 +11,8 @@
     "prebuild": "rm -rf dist",
     "build": "npm run prebuild && mkdir dist && tsc",
     "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 ./node_modules/.bin/mocha --reporter spec --timeout 3000 test/*.test.js",
-    "lint": "./node_modules/.bin/tslint --project tsconfig.json lib/**.ts",
-    "fix": "./node_modules/.bin/tslint --project tsconfig.json --fix lib/**.ts"
+    "lint": "./node_modules/.bin/tslint --project tsconfig.json ",
+    "fix": "./node_modules/.bin/tslint --project tsconfig.json --fix"
   },
   "repository": {
     "type": "git",
