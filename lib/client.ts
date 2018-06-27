@@ -7,6 +7,7 @@ import { CONTENT_TYPE_FORM } from './constants/contentTypes'
 import { ua } from './constants/ua'
 import { md5, hmacsha256 } from './util/crypto'
 import { buildStringToSign } from './util/sign'
+import { sortKey } from './util/sort'
 
 export class Client extends Base {
   public appKey: string
@@ -25,6 +26,7 @@ export class Client extends Base {
     const headers = buildHeaders(opts.headers, signHeaders, this.appKey, this.stage)
     const requestContentType = headers['content-type'] || ''
 
+    opts.data = sortKey(opts.data)
     if ((method === 'POST' || method === 'PUT')
       && !requestContentType.startsWith(CONTENT_TYPE_FORM)) {
       let stringifyData = JSON.stringify(opts.data)
