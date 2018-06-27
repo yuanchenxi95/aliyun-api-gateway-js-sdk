@@ -1,2 +1,3 @@
 import { Client } from './Client'
-export { Client }
+import * as ContentTypes from './constants/contentTypes'
+export { Client, ContentTypes }

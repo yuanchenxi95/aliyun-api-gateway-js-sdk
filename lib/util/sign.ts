@@ -7,13 +7,21 @@ import { CONTENT_TYPE_FORM } from '../constants/contentTypes'
 
 function buildUrl (url: string, data?: any): string {
   const parsedUrl = parse(url, true)
-
+  let params: string = queryString.stringify(parsedUrl.query)
   if (_.isNil(data)) {
-    return parsedUrl.pathname
+    if (params === '') {
+      return parsedUrl.pathname
+    } else {
+      return parsedUrl.pathname + '?' + params
+    }
   }
-  const toStringify = Object.assign(parsedUrl.query, data)
-  let params: string = queryString.stringify(toStringify)
-  return parsedUrl.pathname + '?' + params
+  console.log(parsedUrl)
+  let dataString = JSON.stringify(data)
+  if (params === '') {
+    return parsedUrl.pathname + '?' + dataString
+  } else {
+    return parsedUrl.pathname + '?' + params + '&' + dataString
+  }
 }
 
 export function buildStringToSign (

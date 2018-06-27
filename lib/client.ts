@@ -26,7 +26,8 @@ export class Client extends Base {
 
     if ((method === 'POST' || method === 'PUT')
       && !requestContentType.startsWith(CONTENT_TYPE_FORM)) {
-      headers['content-md5'] = md5(opts.data)
+      let stringifyData = JSON.stringify(opts.data)
+      headers['content-md5'] = md5(stringifyData)
     }
 
     const signHeaderKeys = getSignHeaderKeys(headers, signHeaders)
