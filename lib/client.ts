@@ -4,6 +4,7 @@ import Base from './base'
 import Options from './types/Options'
 import { buildHeaders, getSignedHeadersString, getSignHeaderKeys } from './util/headers'
 import { CONTENT_TYPE_FORM } from './constants/contentTypes'
+import { ua } from './constants/ua'
 import { md5, hmacsha256 } from './util/crypto'
 import { buildStringToSign } from './util/sign'
 
@@ -35,9 +36,8 @@ export class Client extends Base {
     const signedHeadersStr = getSignedHeadersString(signHeaderKeys, headers)
 
     const stringToSign = buildStringToSign(method, headers, signedHeadersStr, opts.url, opts.data)
-    console.log(stringToSign)
     headers['x-ca-signature'] = hmacsha256(stringToSign, this.appSecret)
-    headers['user-agent'] = 'api-gateway-js-sdk'
+    headers['user-agent'] = ua
 
     let config = {
       method,
@@ -46,8 +46,6 @@ export class Client extends Base {
       data: opts.data,
       timeout: opts.timeout || 2000,
     }
-
-    console.log(config)
 
     return axios(config)
   }

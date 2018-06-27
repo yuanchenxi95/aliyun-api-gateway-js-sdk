@@ -1,5 +1,3 @@
-import parse from 'url-parse'
-import queryString from 'query-string'
 
 import Options from './types/Options'
 import { loweredKeys } from './util/loweredKeys'
