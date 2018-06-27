@@ -11,7 +11,7 @@ abstract class Base {
     const headers = opts.headers
     let type = headers['content-type'] || headers['Content-Type']
     if (!type) {
-      headers['content-type'] = 'application/json'
+      headers['content-type'] = 'application/json;charset=utf-8'
     }
 
     return this.request('POST', opts)

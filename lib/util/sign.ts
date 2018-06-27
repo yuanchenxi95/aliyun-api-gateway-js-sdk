@@ -69,5 +69,6 @@ export function buildStringToSign (
     list.push(buildUrl(url))
   }
 
+  console.log(list)
   return list.join('')
 }

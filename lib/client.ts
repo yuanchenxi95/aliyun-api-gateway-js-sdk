@@ -27,10 +27,11 @@ export class Client extends Base {
     const requestContentType = headers['content-type'] || ''
 
     opts.data = sortKey(opts.data)
-    if ((method === 'POST' || method === 'PUT')
-      && !requestContentType.startsWith(CONTENT_TYPE_FORM)) {
-      let stringifyData = JSON.stringify(opts.data)
-      headers['content-md5'] = md5(stringifyData)
+    if (method === 'POST' || method === 'PUT') {
+      if (!requestContentType.startsWith(CONTENT_TYPE_FORM)) {
+        let stringifyData = JSON.stringify(opts.data)
+        headers['content-md5'] = md5(stringifyData)
+      }
     }
 
     const signHeaderKeys = getSignHeaderKeys(headers, signHeaders)
@@ -41,6 +42,11 @@ export class Client extends Base {
     headers['x-ca-signature'] = hmacsha256(stringToSign, this.appSecret)
     headers['user-agent'] = ua
 
+    if (method === 'POST' || method === 'PUT') {
+      if (requestContentType.startsWith(CONTENT_TYPE_FORM)) {
+        opts.data = encodeURIComponent(JSON.stringify(opts.data))
+      }
+    }
     let config = {
       method,
       url: opts.url,

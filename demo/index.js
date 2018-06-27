@@ -8,7 +8,7 @@ client.post({
     'content-type': 'application/x-www-form-urlencoded'
   },
   data: {
-    'hello': 'world'
+    'hello': '+world'
   }
 })
   .then(res =>
