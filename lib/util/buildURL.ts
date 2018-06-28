@@ -57,14 +57,16 @@ export function buildParams (params: StringAny) {
     } else {
       val = [val]
     }
-    _.forEach(val, function parsevalue (v: any) {
-      let newValue
+    _.forEach(val, function parseValue (v: any) {
+      let newValue = v
       if (isDate(v)) {
         newValue = v.toString()
-      } else {
-        newValue = JSON.stringify(v)
       }
-      parts.push(encode(key) + '=' + encode(v))
+      if (newValue === '') {
+        parts.push(key)
+      } else {
+        parts.push(key + '=' + newValue)
+      }
     })
   })
 
@@ -72,3 +74,7 @@ export function buildParams (params: StringAny) {
 
   return serializedParams
 }
+
+console.log(buildParams({
+  a: '',
+}))

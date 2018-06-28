@@ -9,6 +9,9 @@ client.post({
   },
   params: {
     'hello': 'world',
+    'dsn': '+he',
+    'empty': '',
+    // 'emptyArray': [1, 2]
   },
   data: {
     z: 'hello',
