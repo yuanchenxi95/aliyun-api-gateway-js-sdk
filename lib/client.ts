@@ -4,7 +4,6 @@ import Base from './base'
 import Options from './types/Options'
 import { buildHeaders, getSignedHeadersString, getSignHeaderKeys } from './util/headers'
 import { CONTENT_TYPE_FORM } from './constants/contentTypes'
-import { ua } from './constants/ua'
 import { myMd5, myHmacsha256 } from './util/myCrypto'
 import { buildStringToSign } from './util/sign'
 import { encodeData } from './util/encodeData'
@@ -42,7 +41,6 @@ export class Client extends Base {
 
     const stringToSign = buildStringToSign(method, headers, signedHeadersStr, opts.url, opts.data, opts.params)
     headers['x-ca-signature'] = myHmacsha256(stringToSign, this.appSecret)
-    headers['user-agent'] = ua
 
     if (method === 'POST' || method === 'PUT') {
       if (requestContentType.startsWith(CONTENT_TYPE_FORM)) {
