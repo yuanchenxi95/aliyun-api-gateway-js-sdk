@@ -15,7 +15,6 @@ function buildUrl (url: string, data?: any): string {
       return parsedUrl.pathname + '?' + params
     }
   }
-  console.log(parsedUrl)
   let dataString = JSON.stringify(data)
   if (params === '') {
     return parsedUrl.pathname + '?' + dataString
@@ -69,6 +68,6 @@ export function buildStringToSign (
     list.push(buildUrl(url))
   }
 
-  console.log(list)
+  // console.log(list)
   return list.join('')
 }

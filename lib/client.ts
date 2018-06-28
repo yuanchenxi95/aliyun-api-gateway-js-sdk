@@ -7,7 +7,6 @@ import { CONTENT_TYPE_FORM } from './constants/contentTypes'
 import { ua } from './constants/ua'
 import { md5, hmacsha256 } from './util/crypto'
 import { buildStringToSign } from './util/sign'
-import { sortKey } from './util/sort'
 
 export class Client extends Base {
   public appKey: string
@@ -26,7 +25,6 @@ export class Client extends Base {
     const headers = buildHeaders(opts.headers, signHeaders, this.appKey, this.stage)
     const requestContentType = headers['content-type'] || ''
 
-    opts.data = sortKey(opts.data)
     if (method === 'POST' || method === 'PUT') {
       if (!requestContentType.startsWith(CONTENT_TYPE_FORM)) {
         let stringifyData = JSON.stringify(opts.data)
@@ -44,7 +42,8 @@ export class Client extends Base {
 
     if (method === 'POST' || method === 'PUT') {
       if (requestContentType.startsWith(CONTENT_TYPE_FORM)) {
-        opts.data = encodeURIComponent(JSON.stringify(opts.data))
+        // opts.data = encodeURIComponent(JSON.stringify(opts.data))
+        // opts.data = JSON.stringify(opts.data)
       }
     }
     let config = {
@@ -52,8 +51,9 @@ export class Client extends Base {
       url: opts.url,
       headers,
       data: opts.data,
-      timeout: opts.timeout || 2000,
+      timeout: opts.timeout || 5000,
     }
+    console.log(config)
 
     return axios(config)
   }
