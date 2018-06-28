@@ -1,7 +1,7 @@
-import StringMap from '../types/StringMap'
+import StringAny from '../types/StringAny'
 
-export function sortKey (obj: StringMap): StringMap {
-  const ordered: StringMap = { }
+export function sortKey (obj: StringAny): StringAny {
+  const ordered: StringAny = { }
   Object.keys(obj).sort().forEach(function (key) {
     ordered[key] = obj[key]
   })

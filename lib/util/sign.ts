@@ -1,14 +1,16 @@
 import _ from 'lodash'
-import queryString from 'query-string'
 import parse from 'url-parse'
 
 import StringMap from '../types/StringMap'
 import { CONTENT_TYPE_FORM } from '../constants/contentTypes'
+import { buildParams } from './buildURL'
+import { sortKey } from './sort'
 
 function buildUrl (url: string, params?: object, data?: any): string {
   const parsedUrl = parse(url, true)
   let newParams = Object.assign({}, parsedUrl.query, params)
-  let paramsString: string = queryString.stringify(newParams)
+  newParams = sortKey(newParams)
+  let paramsString: string = buildParams(newParams)
   if (_.isNil(data)) {
     if (paramsString === '') {
       return parsedUrl.pathname

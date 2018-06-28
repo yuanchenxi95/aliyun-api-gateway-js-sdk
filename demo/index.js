@@ -11,7 +11,8 @@ client.post({
     'hello': 'world',
   },
   data: {
-    url: 'http://res.cloudinary.com/dw5ab4upj/image/upload/v1530152481/0_3_rzc5nm.jpg'
+    z: 'hello',
+    url: 'http://res.cloudinary.com/dw5ab4upj/image/upload/v1530152481/0_3_rzc5nm.jpg',
   }
 })
   .then(res =>
