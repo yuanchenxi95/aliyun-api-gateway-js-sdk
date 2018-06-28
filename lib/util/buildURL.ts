@@ -28,7 +28,7 @@ function isDate (val?: any) {
  * @param {object} [params] The params to be appended
  * @returns {string} The formatted url
  */
-export function buildParams (params: StringAny) {
+export function buildParams (params?: StringAny) {
   /*eslint no-param-reassign:0*/
   if (_.isNil(params)) {
     return ''

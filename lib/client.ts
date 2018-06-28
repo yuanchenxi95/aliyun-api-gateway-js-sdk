@@ -5,7 +5,7 @@ import Options from './types/Options'
 import { buildHeaders, getSignedHeadersString, getSignHeaderKeys } from './util/headers'
 import { CONTENT_TYPE_FORM } from './constants/contentTypes'
 import { ua } from './constants/ua'
-import { md5, hmacsha256 } from './util/crypto'
+import { myMd5, myHmacsha256 } from './util/myCrypto'
 import { buildStringToSign } from './util/sign'
 import { encodeData } from './util/encodeData'
 import { sortKey } from './util/sort'
@@ -30,7 +30,7 @@ export class Client extends Base {
     if (method === 'POST' || method === 'PUT') {
       if (!requestContentType.startsWith(CONTENT_TYPE_FORM)) {
         let stringifyData = JSON.stringify(opts.data)
-        headers['content-md5'] = md5(stringifyData)
+        headers['content-md5'] = myMd5(stringifyData)
       } else {
         opts.data = sortKey(opts.data)
       }
@@ -41,7 +41,7 @@ export class Client extends Base {
     const signedHeadersStr = getSignedHeadersString(signHeaderKeys, headers)
 
     const stringToSign = buildStringToSign(method, headers, signedHeadersStr, opts.url, opts.data, opts.params)
-    headers['x-ca-signature'] = hmacsha256(stringToSign, this.appSecret)
+    headers['x-ca-signature'] = myHmacsha256(stringToSign, this.appSecret)
     headers['user-agent'] = ua
 
     if (method === 'POST' || method === 'PUT') {

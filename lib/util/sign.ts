@@ -8,8 +8,7 @@ import { sortKey } from './sort'
 
 function buildUrl (url: string, params?: object, data?: any): string {
   const parsedUrl = parse(url, true)
-  let newParams = Object.assign({}, parsedUrl.query, params)
-  newParams = sortKey(newParams)
+  let newParams = sortKey(Object.assign({}, parsedUrl.query, params))
   let paramsString: string = buildParams(newParams)
   if (_.isNil(data)) {
     if (paramsString === '') {
