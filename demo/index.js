@@ -9,12 +9,12 @@ client.post({
   },
   params: {
     'hello': 'world',
-    'dsn': '+he',
+    'dsn': '+h&&&+++&&&e',
     'empty': '',
     // 'emptyArray': [1, 2]
   },
   data: {
-    z: 'hello',
+    z: '+h&sdf&&+sdf++&&&e',
     url: 'http://res.cloudinary.com/dw5ab4upj/image/upload/v1530152481/0_3_rzc5nm.jpg',
   }
 })

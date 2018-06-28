@@ -7,6 +7,8 @@ import { CONTENT_TYPE_FORM } from './constants/contentTypes'
 import { ua } from './constants/ua'
 import { md5, hmacsha256 } from './util/crypto'
 import { buildStringToSign } from './util/sign'
+import { encodeData } from './util/encodeData'
+import { sortKey } from './util/sort'
 
 export class Client extends Base {
   public appKey: string
@@ -29,6 +31,8 @@ export class Client extends Base {
       if (!requestContentType.startsWith(CONTENT_TYPE_FORM)) {
         let stringifyData = JSON.stringify(opts.data)
         headers['content-md5'] = md5(stringifyData)
+      } else {
+        opts.data = sortKey(opts.data)
       }
     }
 
@@ -43,9 +47,10 @@ export class Client extends Base {
     if (method === 'POST' || method === 'PUT') {
       if (requestContentType.startsWith(CONTENT_TYPE_FORM)) {
         // opts.data = encodeURIComponent(JSON.stringify(opts.data))
-        // opts.data = JSON.stringify(opts.data)
+        opts.data = encodeData(opts.data)
       }
     }
+
     let config = {
       method,
       url: opts.url,

@@ -2,17 +2,6 @@
 import _ from 'lodash'
 import StringAny from '../types/StringAny'
 
-function encode (val: string) {
-  return encodeURIComponent(val).
-  replace(/%40/gi, '@').
-  replace(/%3A/gi, ':').
-  replace(/%24/g, '$').
-  replace(/%2C/gi, ',').
-  replace(/%20/g, '+').
-  replace(/%5B/gi, '[').
-  replace(/%5D/gi, ']')
-}
-
 /**
  * Determine if a value is an Array
  *
@@ -74,7 +63,3 @@ export function buildParams (params: StringAny) {
 
   return serializedParams
 }
-
-console.log(buildParams({
-  a: '',
-}))
