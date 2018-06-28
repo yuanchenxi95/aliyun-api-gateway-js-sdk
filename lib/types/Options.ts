@@ -4,6 +4,7 @@ declare class Options {
   url: string
   signHeaders?: StringMap
   headers?: StringMap
+  params?: object
   data?: any
   timeout?: number
 }

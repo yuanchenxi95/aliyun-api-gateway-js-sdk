@@ -36,7 +36,7 @@ export class Client extends Base {
     headers['x-ca-signature-headers'] = signHeaderKeys.join(',')
     const signedHeadersStr = getSignedHeadersString(signHeaderKeys, headers)
 
-    const stringToSign = buildStringToSign(method, headers, signedHeadersStr, opts.url, opts.data)
+    const stringToSign = buildStringToSign(method, headers, signedHeadersStr, opts.url, opts.data, opts.params)
     headers['x-ca-signature'] = hmacsha256(stringToSign, this.appSecret)
     headers['user-agent'] = ua
 
@@ -51,6 +51,7 @@ export class Client extends Base {
       url: opts.url,
       headers,
       data: opts.data,
+      params: opts.params,
       timeout: opts.timeout || 5000,
     }
     console.log(config)

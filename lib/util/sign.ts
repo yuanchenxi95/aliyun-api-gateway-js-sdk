@@ -5,21 +5,22 @@ import parse from 'url-parse'
 import StringMap from '../types/StringMap'
 import { CONTENT_TYPE_FORM } from '../constants/contentTypes'
 
-function buildUrl (url: string, data?: any): string {
+function buildUrl (url: string, params?: object, data?: any): string {
   const parsedUrl = parse(url, true)
-  let params: string = queryString.stringify(parsedUrl.query)
+  let newParams = Object.assign({}, parsedUrl.query, params)
+  let paramsString: string = queryString.stringify(newParams)
   if (_.isNil(data)) {
-    if (params === '') {
+    if (paramsString === '') {
       return parsedUrl.pathname
     } else {
-      return parsedUrl.pathname + '?' + params
+      return parsedUrl.pathname + '?' + paramsString
     }
   }
   let dataString = JSON.stringify(data)
-  if (params === '') {
+  if (paramsString === '') {
     return parsedUrl.pathname + '?' + dataString
   } else {
-    return parsedUrl.pathname + '?' + params + '&' + dataString
+    return parsedUrl.pathname + '?' + paramsString + '&' + dataString
   }
 }
 
@@ -29,6 +30,7 @@ export function buildStringToSign (
   signedHeaders: string,
   url: string,
   data?: any,
+  params?: object,
 ): string {
   const lf = '\n'
   const list = [method, lf]
@@ -63,11 +65,11 @@ export function buildStringToSign (
   }
 
   if (contentType.startsWith(CONTENT_TYPE_FORM) && !_.isNil(data)) {
-    list.push(buildUrl(url, data))
+    list.push(buildUrl(url, params, data))
   } else {
-    list.push(buildUrl(url))
+    list.push(buildUrl(url, params))
   }
 
-  // console.log(list)
+  console.log(list)
   return list.join('')
 }
