@@ -57,7 +57,6 @@ export class Client extends Base {
       params: opts.params,
       timeout: opts.timeout || 5000,
     }
-    console.log(config)
 
     return axios(config)
   }

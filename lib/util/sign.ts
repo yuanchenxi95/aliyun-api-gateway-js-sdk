@@ -71,6 +71,5 @@ export function buildStringToSign (
     list.push(buildUrl(url, params))
   }
 
-  console.log(list)
   return list.join('')
 }
