@@ -33,7 +33,7 @@ export function buildHeaders (
     'x-ca-key': appKey,
     'x-ca-nonce': uuid.v4(),
     'x-ca-stage': stage,
-    'accept': 'application/json',
+    // 'accept': 'application/json',
   }, headers, signHeaders)
 }
 

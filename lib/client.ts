@@ -24,6 +24,10 @@ export class Client extends Base {
   async request (method: string, opts: Options) {
     const signHeaders = opts.signHeaders
     const headers = buildHeaders(opts.headers, signHeaders, this.appKey, this.stage)
+    delete headers['accept']
+    delete headers['Accept']
+    // use axios default headers
+    headers['accept'] = 'application/json, text/plain, */*'
     const requestContentType = headers['content-type'] || ''
 
     if (method === 'POST' || method === 'PUT') {
