@@ -52,7 +52,7 @@ export function buildStringToSign (
   list.push(lf)
 
   const contentType = headers['content-type'] || ''
-  if (contentType) {
+  if (contentType !== CONTENT_TYPE_FORM) {
     list.push(contentType)
   }
   list.push(lf)

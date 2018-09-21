@@ -25,7 +25,6 @@ export class Client extends Base {
     const signHeaders = opts.signHeaders
     const headers = buildHeaders(opts.headers, signHeaders, this.appKey, this.stage)
     delete headers['accept']
-    delete headers['Accept']
     const requestContentType = headers['content-type'] || ''
 
     if (method === 'POST' || method === 'PUT') {
