@@ -36,10 +36,13 @@ export function buildStringToSign (
   const lf = '\n'
   const list = [method, lf]
 
-  const accept = headers['accept']
-  if (!_.isNil(accept)) {
-    list.push(accept)
-  }
+  // const accept = headers['accept']
+  // if (!_.isNil(accept)) {
+  //   list.push(accept)
+  // }
+
+  // use axios default headers
+  list.push('application/json, text/plain, */*')
   list.push(lf)
 
   const contentMD5 = headers['content-md5']

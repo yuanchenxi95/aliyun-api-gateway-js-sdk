@@ -13,9 +13,6 @@ abstract class Base {
     if (!type) {
       headers['content-type'] = 'application/json;charset=utf-8'
     }
-    // to override axios default accept type
-    headers['Accept'] = headers['accept']
-    delete headers['accept']
 
     return this.request('POST', opts)
   }
