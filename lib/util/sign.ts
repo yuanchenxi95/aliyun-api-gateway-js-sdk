@@ -51,10 +51,15 @@ export function buildStringToSign (
   }
   list.push(lf)
 
-  const contentType = headers['Content-Type'] || ''
-  if (contentType !== CONTENT_TYPE_FORM) {
+  const contentType = headers['content-type'] || ''
+  if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
+    // For node push content Type
     list.push(contentType)
   }
+  // else if (typeof XMLHttpRequest !== 'undefined') {
+  //
+  // }
+
   list.push(lf)
 
   const date = headers['date']
