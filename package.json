@@ -41,7 +41,7 @@
     "crypto-js": "^3.1.9-1",
     "lodash": "^4.17.10",
     "query-string": "^6.1.0",
-    "url-parse": "^1.4.1",
+    "url-parse": "^1.4.3",
     "uuid": "^3.2.1"
   }
 }

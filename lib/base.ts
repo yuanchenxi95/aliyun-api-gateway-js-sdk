@@ -11,10 +11,49 @@ abstract class Base {
     const headers = opts.headers
     let type = headers['content-type'] || headers['Content-Type']
     if (!type) {
-      headers['content-type'] = 'application/json;charset=utf-8'
+      headers['content-type'] = 'application/jsoncharset=utf-8'
     }
 
     return this.request('POST', opts)
+  }
+
+  put (opts: Options) {
+    opts.headers = loweredKeys(opts.headers)
+    opts.signHeaders = loweredKeys(opts.signHeaders)
+
+    const headers = opts.headers
+    let type = headers['content-type'] || headers['Content-Type']
+    if (!type) {
+      headers['content-type'] = 'application/jsoncharset=utf-8'
+    }
+
+    return this.request('PUT', opts)
+  }
+
+  get (opts: Options) {
+    opts.headers = loweredKeys(opts.headers)
+    opts.signHeaders = loweredKeys(opts.signHeaders)
+
+    const headers = opts.headers
+    let type = headers['content-type'] || headers['Content-Type']
+    if (!type) {
+      headers['content-type'] = 'application/jsoncharset=utf-8'
+    }
+
+    return this.request('GET', opts)
+  }
+
+  delete (opts: Options) {
+    opts.headers = loweredKeys(opts.headers)
+    opts.signHeaders = loweredKeys(opts.signHeaders)
+
+    const headers = opts.headers
+    let type = headers['content-type'] || headers['Content-Type']
+    if (!type) {
+      headers['content-type'] = 'application/jsoncharset=utf-8'
+    }
+
+    return this.request('DELETE', opts)
   }
   abstract request (method: string, opts: Options): Promise<any>
 }
