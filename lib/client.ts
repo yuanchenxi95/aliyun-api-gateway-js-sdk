@@ -3,7 +3,7 @@ import axios from 'axios'
 import Base from './base'
 import Options from './types/Options'
 import { buildHeaders, getSignedHeadersString, getSignHeaderKeys } from './util/headers'
-import { CONTENT_TYPE_FORM } from './constants/contentTypes'
+import { CONTENT_TYPE_FORM, CONTENT_TYPE_JSON } from './constants/contentTypes';
 import { myMd5, myHmacsha256 } from './util/myCrypto'
 import { buildStringToSign } from './util/sign'
 import { encodeData } from './util/encodeData'
@@ -25,6 +25,7 @@ export class Client extends Base {
     const signHeaders = opts.signHeaders
     const headers = buildHeaders(opts.headers, signHeaders, this.appKey, this.stage)
     delete headers['accept']
+    headers['content-type'] = CONTENT_TYPE_JSON
     const requestContentType = headers['content-type'] || ''
 
     if (method === 'POST' || method === 'PUT') {
