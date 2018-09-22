@@ -25,8 +25,10 @@ export class Client extends Base {
     const signHeaders = opts.signHeaders
     const headers = buildHeaders(opts.headers, signHeaders, this.appKey, this.stage)
     delete headers['accept']
-    headers['content-type'] = CONTENT_TYPE_JSON
-    const requestContentType = headers['content-type'] || ''
+    delete headers['content-type']
+    // axios behaves differently in browser and node.js
+    headers['Content-Type'] = CONTENT_TYPE_JSON
+    const requestContentType = CONTENT_TYPE_JSON
 
     if (method === 'POST' || method === 'PUT') {
       if (!requestContentType.startsWith(CONTENT_TYPE_FORM)) {
