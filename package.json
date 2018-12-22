@@ -10,6 +10,9 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "npm run prebuild && mkdir dist && tsc",
+    "pre-babel": "rm -rf es5dist",
+    "babel": "./node_modules/.bin/babel dist --out-dir es5dist",
+    "build-babel": "npm run pre-babel && mkdir es5dist && npm run babel",
     "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 ./node_modules/.bin/mocha --reporter spec --timeout 3000 test/*.test.js",
     "lint": "./node_modules/.bin/tslint --project tsconfig.json ",
     "fix": "./node_modules/.bin/tslint --project tsconfig.json --fix"
@@ -32,6 +35,9 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
     "@types/crypto-js": "^3.1.41",
     "@types/lodash": "^4.14.110",
     "@types/query-string": "^6.1.0",
