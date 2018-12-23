@@ -7,6 +7,7 @@ import { buildParams } from './buildURL'
 import { sortKey } from './sort'
 
 function buildUrl (url: string, params?: object, data?: any): string {
+  // @ts-ignore
   const parsedUrl = parse(url, true)
   let newParams = sortKey(Object.assign({}, parsedUrl.query, params))
   let paramsString: string = buildParams(newParams)

@@ -1,1 +1,1 @@
-module.exports = require('./es5dist/index')
+module.exports = require('./dist/index')
